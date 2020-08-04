@@ -1,7 +1,5 @@
 const express = require('express');
 const City = require('../models/city');
-const { json } = require('express');
-const city = require('../models/city');
 
 const router = express.Router();
 
@@ -12,7 +10,7 @@ router.get('/', async (req, res) => {
         const cities = await City.find().sort('-updatedAt');
         return res.json(cities);
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message.split(',') });
     }
 });
 
@@ -31,19 +29,23 @@ router.post('/', async (req, res) => {
         city = await city.save();
         return res.status(201).json(city);
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        return res.status(400).json({ error: error.message.split(',') });
     }
 });
 
 // 4. Update One
 router.put('/:id', getCityById, async (req, res) => {
+    if (Object.keys(req.body).length == 0) return res.status(400).json({ message: 'Nothing to update.' });
+
     let city = res.city;
-    city.name = req.body.name;
+
+    if (req.body.name) city.name = req.body.name;
+
     try {
         city = await city.save();
         return res.json(city);
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        return res.status(400).json({ error: error.message.split(',') });
     }
 });
 
@@ -54,7 +56,7 @@ router.delete('/:id', getCityById, async (req, res) => {
         await city.delete();
         return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(500).json({ error: error.message.split(',') });
     }
 });
 
