@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
         city = await city.save();
         return res.status(201).json(city);
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(400).json({ error: error.message });
     }
 });
 
@@ -43,7 +43,7 @@ router.put('/:id', getCityById, async (req, res) => {
         city = await city.save();
         return res.json(city);
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        return res.status(400).json({ error: error.message });
     }
 });
 
