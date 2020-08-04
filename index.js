@@ -6,8 +6,8 @@ const app = express();
 
 app.use(express.json());
 
-const serverPort = process.env.SERVER_PORT;
-const dbUrl = process.env.DB_URL;
+const serverPort = process.env.SERVER_PORT || 3000;
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/city-restful';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
