@@ -6,4 +6,4 @@ This is a simple RESTful API for the city resorce build using node.js, express.j
 
 ## Usage
 
-- clone the repository using `__git clone__`
+- clone the repository using __`git clone`__
