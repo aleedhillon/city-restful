@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cityRouter = require('./routes/city');
+const homeRouter = require('./routes/home');
 const app = express();
 
 app.use(express.json());
@@ -20,5 +21,6 @@ mongoose.connect(dbUrl, {
 // db.once('open', () => console.log('db success'));
 
 app.use('/api/cities', cityRouter);
+app.use('/', homeRouter);
 
 app.listen(serverPort, () => console.log(`City Restful app server started at http://localhost:${serverPort}`));
