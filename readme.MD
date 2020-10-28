@@ -12,3 +12,4 @@ This is a simple RESTful API for the city resorce build using node.js, express.j
     - __`SERVER_PORT`__ : port on which to run local express server ie. 3000
     - __`BD_URL`__ : MongoDB url ie. `mongodb://localhost:27017/city-restful`
 - and start your app using __`npm run start`__
+- Access api at __api/cities__
